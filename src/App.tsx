@@ -12,7 +12,7 @@ function App(): React.ReactElement {
   const [name, setName] = useState<string | undefined>(undefined);
   const [ready, setReady] = useState<boolean>(false); // 로그인 상태를 확인한 뒤 페이지를 렌더링하기 위함.
 
-  const islogin = (): void => {
+  const loginChk = (): void => {
     axios.get('/api/login', {
     })
     .then((res) => {
@@ -26,9 +26,7 @@ function App(): React.ReactElement {
   }
 
   useEffect(() => {
-    // 쿠키에 jwt 가 존재하면 로그인 정보 받아오기
-    const jwt = cookies.get('jwt');
-    if(jwt) islogin();
+    loginChk();
   }, []);
 
   return (
