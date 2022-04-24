@@ -17,8 +17,9 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
   const { name } = props;
 
   useEffect(() => {
+    // 한번의 api 호출이 사라졌기 때문에 성능 향상
     if(name) navigate('/');
-  });
+  }, []);
 
   const idChange = (e: any) => setId(e.target.value || '')
   const pwChange = (e: any) => setPw(e.target.value || '')

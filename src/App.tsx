@@ -1,6 +1,6 @@
-import Header from './views/header/Header';
-import Main from './views/main/Main';
-import Login from './views/login/Login';
+import Header from 'src/views/header/Header';
+import Main from 'src/views/main/Main';
+import Login from 'src/views/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Cookies } from 'react-cookie';

@@ -11,12 +11,21 @@ const Header: React.FunctionComponent<nameProps> = (props) => {
   return (
     <div id="navbar">
       <div>
-        <Link to="/">
+        <Link
+          to="/"
+          tabIndex={-1}
+        >
           <p id="logo">STARK</p>
         </Link>
         { name
           ? <p id="login">{name} 님, 안녕하세요.</p>
-          : <Link id="login" to='/login'>로그인</Link>
+          : <Link
+              id="login"
+              to='/login'
+              tabIndex={-1}
+            >
+              로그인
+            </Link>
         }
       </div>
     </div>
