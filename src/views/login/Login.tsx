@@ -1,19 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-const Login = () => {
+// header 에도 login 에도 중복해서 쓰는게 맞나
+interface nameProps {
+  name: string | undefined
+}
+
+const Login: React.FunctionComponent<nameProps> = (props) => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [state, setState] = useState('');
 
-  const idChange = (e: any) => {
-    setId(e.target.value || ''); 
-  }
+  const navigate = useNavigate();
+  const { name } = props;
 
-  const pwChange = (e: any) => {
-    setPw(e.target.value || '');
-  }
+  useEffect(() => {
+    if(name) navigate('/');
+  });
+
+  const idChange = (e: any) => setId(e.target.value || '')
+  const pwChange = (e: any) => setPw(e.target.value || '')
 
   const loginBtnClick = (): void => {
     if(id === '' || pw === ''){
@@ -35,9 +43,7 @@ const Login = () => {
   }
 
   const enterKeyPress = (e: any) => {
-    if(e.key === 'Enter'){
-      loginBtnClick();
-    }
+    if(e.key === 'Enter') loginBtnClick();
   }
 
   return (
