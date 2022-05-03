@@ -47,6 +47,7 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
     if(e.key === 'Enter') loginBtnClick();
   }
 
+  // name 으로 conditional rendering 처리하기
   return (
     <div id="loginForm">
       <div>
