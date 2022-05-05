@@ -3,14 +3,17 @@ import Main from 'src/views/main/Main';
 import Login from 'src/views/login/Login';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Cookies } from 'react-cookie';
 import axios from 'axios';
-
-const cookies = new Cookies();
 
 function App(): React.ReactElement {
   const [name, setName] = useState<string | undefined>(undefined);
+  const [menu, setMenu] = useState<boolean>(false);
   const [ready, setReady] = useState<boolean>(false); // 로그인 상태를 확인한 뒤 페이지를 렌더링하기 위함.
+
+  const menuBtnClick = (e: any): void => {
+    setMenu(!menu);
+    e.stopPropagation();
+  }
 
   const loginChk = (): void => {
     axios.get('/api/login', {
@@ -32,8 +35,10 @@ function App(): React.ReactElement {
   return (
     <div className="App">
       { ready &&
-        <div>
-          <Header name={name}/>
+        <div
+          onClick={() => setMenu(false)}
+        >
+          <Header name={name} menu={menu} menuBtnClick={menuBtnClick}/>
           <Routes>
             <Route path='/' element={<Main/>}/>
             <Route path='/login' element={<Login name={name}/>}/>

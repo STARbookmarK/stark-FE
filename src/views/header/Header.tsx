@@ -1,18 +1,17 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { MouseEventHandler } from 'react';
 import axios from 'axios';
 
-interface nameProps {
+interface props {
   name: string | undefined
+  menu: boolean
+  menuBtnClick: MouseEventHandler
 }
 
-const Header: React.FunctionComponent<nameProps> = (props) => {
-  const { name } = props;
+const Header: React.FunctionComponent<props> = (props) => {
+  const { name, menu, menuBtnClick } = props;
 
-  const [menu, setMenu] = useState<boolean>(false);
-
-  const menuBtnClick = (): void => setMenu(!menu);
   const logoutBtnClick = (): void => {
     axios.get('/api/logout', {
     })
@@ -40,7 +39,10 @@ const Header: React.FunctionComponent<nameProps> = (props) => {
                 onClick={menuBtnClick}
               />
               { menu && 
-                <div id="menu">
+                <div
+                  id="menu"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <ul>
                     <li onClick={logoutBtnClick}> 로그아웃 </li>
                   </ul>
