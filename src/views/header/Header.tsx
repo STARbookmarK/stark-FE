@@ -1,5 +1,7 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 interface nameProps {
   name: string | undefined
@@ -7,6 +9,19 @@ interface nameProps {
 
 const Header: React.FunctionComponent<nameProps> = (props) => {
   const { name } = props;
+
+  const [menu, setMenu] = useState<boolean>(false);
+
+  const menuBtnClick = (): void => setMenu(!menu);
+  const logoutBtnClick = (): void => {
+    axios.get('/api/logout', {
+    })
+    .then(() => {
+      window.location.replace('/');
+    })
+    .catch((err) => {
+    })
+  }
 
   return (
     <div id="navbar">
@@ -18,7 +33,20 @@ const Header: React.FunctionComponent<nameProps> = (props) => {
           <p id="logo">STARK</p>
         </Link>
         { name
-          ? <p id="login">{name} 님, 안녕하세요.</p>
+          ? <div id="login">
+              <p>{name} 님, 안녕하세요.</p>
+              <img
+                src='img/dropdown.png'
+                onClick={menuBtnClick}
+              />
+              { menu && 
+                <div id="menu">
+                  <ul>
+                    <li onClick={logoutBtnClick}> 로그아웃 </li>
+                  </ul>
+                </div>
+              }
+            </div>
           : <Link
               id="login"
               to='/login'

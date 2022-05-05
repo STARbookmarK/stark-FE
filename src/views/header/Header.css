@@ -29,6 +29,38 @@
 }
 
 #login {
+  display: flex;
+  align-items: center;
   vertical-align: middle;
   margin: auto 0;
+  position: relative;
+}
+
+#login > img {
+  margin-left: 5px;
+  height: 0.5em;
+}
+
+#login > img:hover {
+  cursor: pointer;
+}
+
+#login > #menu {
+  background-color: #FEFEFE;
+  border: 2px solid #F2F2F2;
+  display: block;
+  position: absolute;
+  top: 40px;
+  right: 0;
+}
+
+#login > #menu > ul {
+  list-style: none;
+  padding: 0 20px;
+}
+
+#login > #menu > ul > li{
+  text-align: right;
+  margin-bottom: 5px;
+  cursor: pointer;
 }

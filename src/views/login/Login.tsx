@@ -9,9 +9,10 @@ interface nameProps {
 }
 
 const Login: React.FunctionComponent<nameProps> = (props) => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const [state, setState] = useState('');
+  const [id, setId] = useState<string>('');
+  const [pw, setPw] = useState<string>('');
+  const [state, setState] = useState<string>('');
+  const [autoLogin, setAutoLogin] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const { name } = props;
@@ -23,6 +24,7 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
 
   const idChange = (e: any) => setId(e.target.value || '')
   const pwChange = (e: any) => setPw(e.target.value || '')
+  const chkboxChange = () => setAutoLogin(!autoLogin);
 
   const loginBtnClick = (): void => {
     if(id === '' || pw === ''){
@@ -31,7 +33,8 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
     }
     axios.post('/api/login', {
       id: id,
-      pw: pw
+      pw: pw,
+      autoLogin: autoLogin
     }, {})
     .then(() => {
       window.location.replace('/');
@@ -73,6 +76,20 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
           <p>로그인</p>
         </div>
         <p id="loginState">{state}</p>
+        <label>
+          <input
+            style={{
+              transform: 'scale(1.5)',
+              fontSize: '12px',
+              marginRight: '10px',
+              accentColor: '#8AAAE5'
+            }}
+            type='checkbox'
+            checked={autoLogin}
+            onChange={chkboxChange}
+          />
+            자동 로그인
+        </label>
       </div>
     </div>
   );
