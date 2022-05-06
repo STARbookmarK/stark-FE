@@ -1,0 +1,11 @@
+$br: #F2F2F2; // border
+$bg: #FEFEFE; // background
+$pt: #8AAAE5; // point
+$dg: #404040; // dark gray
+$wh: white;
+
+@mixin flex_middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

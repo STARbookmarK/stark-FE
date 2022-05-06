@@ -1,6 +1,7 @@
 import Header from 'src/views/header/Header';
 import Main from 'src/views/main/Main';
 import Login from 'src/views/login/Login';
+import Home from 'src/views/home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -40,8 +41,9 @@ function App(): React.ReactElement {
         >
           <Header name={name} menu={menu} menuBtnClick={menuBtnClick}/>
           <Routes>
-            <Route path='/' element={<Main/>}/>
+            <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login name={name}/>}/>
+            <Route path='/main' element={<Main/>}/>
           </Routes>
         </div>
       }

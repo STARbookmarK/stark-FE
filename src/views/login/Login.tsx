@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Login.css';
+import './Login.scss';
 
-// header 에도 login 에도 중복해서 쓰는게 맞나
-interface nameProps {
+interface Props {
   name: string | undefined
 }
 
-const Login: React.FunctionComponent<nameProps> = (props) => {
+const Login: React.FunctionComponent<Props> = (props) => {
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
   const [state, setState] = useState<string>('');
@@ -52,38 +51,35 @@ const Login: React.FunctionComponent<nameProps> = (props) => {
 
   // name 으로 conditional rendering 처리하기
   return (
-    <div id="loginForm">
-      <div>
+    <div className='login_form_wrap'>
+      <div className='login_form'>
         <h3>로그인</h3>
         <input
           value={id}
           onChange={idChange}
-          type="text"
-          placeholder="아이디"
+          type='text'
+          placeholder='아이디'
           onKeyPress={enterKeyPress}
+          className='login_input'
         />
         <input
           value={pw}
           onChange={pwChange}
-          type="password"
-          placeholder="비밀번호"
+          type='password'
+          placeholder='비밀번호'
           onKeyPress={enterKeyPress}
+          className='login_input'
         />
         <div
-          id="loginBtn"
+          className='login_btn'
           onClick={loginBtnClick}
         >
           <p>로그인</p>
         </div>
-        <p id="loginState">{state}</p>
+        <p className='login_state'>{state}</p>
         <label>
           <input
-            style={{
-              transform: 'scale(1.5)',
-              fontSize: '12px',
-              marginRight: '10px',
-              accentColor: '#8AAAE5'
-            }}
+            className='login_auto'
             type='checkbox'
             checked={autoLogin}
             onChange={chkboxChange}

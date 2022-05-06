@@ -1,0 +1,68 @@
+@import 'src/styles/common.scss';
+
+.navbar_wrap {
+  @include flex_middle;
+  border-bottom: 2px solid $br;
+  background-color: $bg;
+  .navbar {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    .logo {
+      font-size: 25px;
+      font-weight: bolder;
+      text-decoration: none;
+      color: $bg;
+      background-color: $pt;
+      padding: 10px 20px;
+      margin: 0;
+    }
+    .login {
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      margin: auto 20px;
+      position: relative;
+      color: $dg;
+      width: 100%;
+      a {
+        text-decoration: none;
+        color: $dg;
+      }
+      img {
+        margin-left: 5px;
+        height: 0.5em;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .menu {
+        background-color: $bg;
+        border: 2px solid $br;
+        display: block;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        ul {
+          list-style: none;
+          padding: 0 20px;
+          li {
+            text-align: right;
+            margin-bottom: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .logout {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: auto 20px;
+      a {
+        text-decoration: none;
+        color: $dg;
+      }
+    }
+  }
+}

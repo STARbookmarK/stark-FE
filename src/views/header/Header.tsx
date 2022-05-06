@@ -1,15 +1,15 @@
-import './Header.css';
+import './Header.scss';
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
 import axios from 'axios';
 
-interface props {
+interface Props {
   name: string | undefined
   menu: boolean
   menuBtnClick: MouseEventHandler
 }
 
-const Header: React.FunctionComponent<props> = (props) => {
+const Header: React.FunctionComponent<Props> = (props) => {
   const { name, menu, menuBtnClick } = props;
 
   const logoutBtnClick = (): void => {
@@ -23,24 +23,27 @@ const Header: React.FunctionComponent<props> = (props) => {
   }
 
   return (
-    <div id="navbar">
-      <div>
+    <div className='navbar_wrap' >
+      <div className='navbar'>
         <Link
           to="/"
           tabIndex={-1}
+          className='logo'
         >
-          <p id="logo">STARK</p>
+          STARK
         </Link>
         { name
-          ? <div id="login">
-              <p>{name} 님, 안녕하세요.</p>
+          ? <div className='login'>
+              <Link to='/main' tabIndex={-1}>내 목록</Link>
+              <div style={{flex: '1 0 0'}}/>
+              <p>{name}</p>
               <img
                 src='img/dropdown.png'
                 onClick={menuBtnClick}
               />
               { menu && 
                 <div
-                  id="menu"
+                  className='menu'
                   onClick={(e) => e.stopPropagation()}
                 >
                   <ul>
@@ -49,13 +52,10 @@ const Header: React.FunctionComponent<props> = (props) => {
                 </div>
               }
             </div>
-          : <Link
-              id="login"
-              to='/login'
-              tabIndex={-1}
-            >
-              로그인
-            </Link>
+          : <div className='logout'>
+              <div style={{flex: '1 0 0'}}/>
+              <Link to='/login' tabIndex={-1}>로그인</Link>
+            </div>
         }
       </div>
     </div>

@@ -1,0 +1,55 @@
+@import 'src/styles/common.scss';
+
+.login_form_wrap {
+  @include flex_middle;
+  margin-top: 60px;
+  .login_form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+    background-color: $bg;
+    border: 2px solid $br;
+    h3 {
+      margin-top: 0px;
+      margin: 30px 0;
+    }
+    .login_input {
+      width: 100%;
+      max-width: 200px;
+      height: 30px;
+      font-size: 14px;
+      border: 1px solid $br;
+      margin-bottom: 6px;
+      padding: 3px 10px;
+    }
+    .login_state {
+      color: red;
+      font-size: 12px;
+    }
+    .login_auto {
+      font-size: 12px;
+      margin-right: 10px;
+      margin-bottom: 30px;
+    }
+    .login_btn {
+      @include flex_middle;
+      width: 100%;
+      max-width: 200px;
+      height: 30px;
+      background-color: $pt;
+      color: $bg;
+      font-size: 14px;
+      padding: 3px 10px;
+      border: 0;
+      &:hover {
+        cursor: pointer;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
