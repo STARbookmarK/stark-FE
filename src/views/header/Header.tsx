@@ -34,7 +34,9 @@ const Header: React.FunctionComponent<Props> = (props) => {
         </Link>
         { name
           ? <div className='login'>
-              <Link to='/main' tabIndex={-1}>내 목록</Link>
+              <Link to='/' tabIndex={-1}>홈</Link>
+              <div className='divider'/>
+              <Link to='/main' tabIndex={-1}>북마크</Link>
               <div style={{flex: '1 0 0'}}/>
               <div
                 className='login_user'

@@ -25,6 +25,9 @@
       position: relative;
       color: $dg;
       width: 100%;
+      .divider {
+        margin: 0 8px;
+      }
       a {
         text-decoration: none;
         color: $dg;
