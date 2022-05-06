@@ -26,7 +26,7 @@ const Header: React.FunctionComponent<Props> = (props) => {
     <div className='navbar_wrap' >
       <div className='navbar'>
         <Link
-          to="/"
+          to='/'
           tabIndex={-1}
           className='logo'
         >
@@ -36,11 +36,13 @@ const Header: React.FunctionComponent<Props> = (props) => {
           ? <div className='login'>
               <Link to='/main' tabIndex={-1}>내 목록</Link>
               <div style={{flex: '1 0 0'}}/>
-              <p>{name}</p>
-              <img
-                src='img/dropdown.png'
+              <div
+                className='login_user'
                 onClick={menuBtnClick}
-              />
+              >
+                <p>{name}</p>
+                <img src='img/dropdown.png'/>
+              </div>
               { menu && 
                 <div
                   className='menu'

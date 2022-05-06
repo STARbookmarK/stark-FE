@@ -29,11 +29,15 @@
         text-decoration: none;
         color: $dg;
       }
-      img {
-        margin-left: 5px;
-        height: 0.5em;
+      .login_user {
+        display: flex;
+        align-items: center;
         &:hover {
           cursor: pointer;
+        }
+        img {
+          margin-left: 5px;
+          height: 0.5em;
         }
       }
       .menu {
