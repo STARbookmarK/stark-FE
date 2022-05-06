@@ -77,9 +77,8 @@ const Login: React.FunctionComponent<Props> = (props) => {
           <p>로그인</p>
         </div>
         <p className='login_state'>{state}</p>
-        <label>
+        <label className='login_auto'>
           <input
-            className='login_auto'
             type='checkbox'
             checked={autoLogin}
             onChange={chkboxChange}
