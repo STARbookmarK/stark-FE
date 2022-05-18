@@ -42,6 +42,9 @@ const Login: React.FunctionComponent<Props> = (props) => {
       if(err.response.status === 401){
         setState('없는 아이디거나 비밀번호가 틀립니다.');
       }
+      else if(err.response.state === 500){
+        setState('서버에 문제가 발생했습니다.');
+      }
     })
   }
 
