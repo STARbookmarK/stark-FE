@@ -1,0 +1,17 @@
+@import 'src/styles/common.scss';
+@import 'src/views/sign/sign.scss';
+
+.sign_form_wrap {
+  .sign_form {
+    .login_item {
+      width: 100%;
+      display: flex;
+      margin-top: 10px;
+    }
+    .login_auto {
+      @include flex_middle;
+      font-size: 12px;
+      color: $dg;
+    }
+  }
+}

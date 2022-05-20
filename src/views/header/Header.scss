@@ -71,5 +71,15 @@
         color: $dg;
       }
     }
+    ul {
+      display: flex;
+      li {
+        list-style: none;
+      }
+      .divider {
+        margin: 3px 9px;
+        border-right: solid 1px $dg;
+      }
+    }
   }
 }

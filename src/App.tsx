@@ -1,6 +1,7 @@
 import Header from 'src/views/header/Header';
-import Main from 'src/views/main/Main';
-import Login from 'src/views/login/Login';
+import MyList from 'src/views/mylist/MyList';
+import Login from 'src/views/sign/SignIn';
+import Register from 'src/views/sign/SignUp';
 import Home from 'src/views/home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -43,7 +44,8 @@ function App(): React.ReactElement {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login name={name}/>}/>
-            <Route path='/main' element={<Main/>}/>
+            <Route path='/mylist' element={<MyList/>}/>
+            <Route path='/register' element={<Register name={name}/>}/>
           </Routes>
         </div>
       }

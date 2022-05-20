@@ -36,7 +36,7 @@ const Header: React.FunctionComponent<Props> = (props) => {
           ? <div className='login'>
               <Link to='/' tabIndex={-1}>홈</Link>
               <div className='divider'/>
-              <Link to='/main' tabIndex={-1}>북마크</Link>
+              <Link to='/mylist' tabIndex={-1}>북마크</Link>
               <div style={{flex: '1 0 0'}}/>
               <div
                 className='login_user'
@@ -58,7 +58,15 @@ const Header: React.FunctionComponent<Props> = (props) => {
             </div>
           : <div className='logout'>
               <div style={{flex: '1 0 0'}}/>
-              <Link to='/login' tabIndex={-1}>로그인</Link>
+              <ul>
+                <li>
+                  <Link to='/login' tabIndex={-1}>로그인</Link>
+                </li>
+                <li className='divider'></li>
+                <li>
+                  <Link to='/register' tabIndex={-1}>회원가입</Link>
+                </li>
+              </ul>
             </div>
         }
       </div>

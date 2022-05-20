@@ -4,8 +4,29 @@ $pt: #8AAAE5; // point
 $dg: #404040; // dark gray
 $wh: white;
 
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
 @mixin flex_middle {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop){
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
 }

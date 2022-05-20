@@ -1,4 +1,4 @@
-const Main = () => {
+const MyList = () => {
   return (
     <div>
       메인 페이지
@@ -6,4 +6,4 @@ const Main = () => {
   );
 }
 
-export default Main;
+export default MyList;

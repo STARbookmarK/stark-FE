@@ -1,0 +1,34 @@
+@import 'src/styles/common.scss';
+@import 'src/views/sign/sign.scss';
+
+.sign_form_wrap {
+  .sign_form {
+    .register_title {
+      width: 100%;
+      margin: 0;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .register_item {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .chk_btn {
+        width: 70px;
+        margin-left: 10px;
+      }
+    }
+    .register_password {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      & > :last-child { // 자식 선택자 '>' 활용
+        margin-left: 10px;
+      }
+      .register_password_item {
+        width: 100%;
+      }
+    }
+  }
+}
