@@ -1,0 +1,16 @@
+@import 'src/styles/common.scss';
+
+.home_wrap {
+  @include flex_middle;
+  margin-top: 60px;
+  table {
+    width: 100%;
+    border: 2px solid $br;
+    border-collapse: collapse;
+    max-width: 400px;
+    color: $dg;
+    th, td {
+      border: 2px solid $br;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import request from 'src/api/user.js';
-import './signUp.scss';
+import './SignUp.scss';
 
 interface Props {
   name: string | undefined

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import request from 'src/api/user.js';
-import './signIn.scss';
+import './SignIn.scss';
 
 interface Props {
   name: string | undefined
