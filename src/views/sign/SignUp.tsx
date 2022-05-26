@@ -54,7 +54,7 @@ const Register: React.FunctionComponent<Props> = (props) => {
   const cpwChange = (e: any) => setCpw(e.target.value || '')
   const messageChange = (e: any) => setMessage(e.target.value || '');
   // 회원가입 버튼 클릭
-  const registerBtnClick = () => {
+  const registerBtnClick = async () => {
     if(id === ''){
       setState('아이디를 입력해주세요.');
       return;
@@ -85,33 +85,23 @@ const Register: React.FunctionComponent<Props> = (props) => {
       nickname: nickname,
       info: message
     }
-    request.register(params)
-    .then((res) => {
-      if(res.status === 200){
-        window.location.replace('/');
-      }
-      else if(res.status >= 500){
-        setState('서버에 문제가 발생했습니다.');
-      }
-    })
+    const res = await request.register(params);
+    if(res.status === 200) window.location.replace('/');
+    else if(res.status >= 500) setState('서버에 문제가 발생했습니다.');
   }
-  const chkUserIdClick = () => {
+  const chkUserIdClick = async () => {
     if(id === '') return;
-    request.chkUserId(id)
-    .then((res) => {
-      valid.current.id = res.data.valid;
-      if(valid.current.id) setIdState('사용 가능한 아이디입니다.');
-      else setIdState('사용할 수 없는 아이디입니다.');
-    })
+    const res = await request.chkUserId(id)
+    valid.current.id = res.data.valid;
+    if(valid.current.id) setIdState('사용 가능한 아이디입니다.');
+    else setIdState('사용할 수 없는 아이디입니다.');
   }
-  const chkNicknameClick = () => {
+  const chkNicknameClick = async () => {
     if(nickname === '') return;
-    request.chkNickname(nickname)
-    .then((res) => {
-      valid.current.nickname = res.data.valid;
-      if(valid.current.nickname) setNicknameState('사용 가능한 닉네임입니다.');
-      else setNicknameState('사용할 수 없는 닉네임입니다.');
-    })
+    const res = await request.chkNickname(nickname);
+    valid.current.nickname = res.data.valid;
+    if(valid.current.nickname) setNicknameState('사용 가능한 닉네임입니다.');
+    else setNicknameState('사용할 수 없는 닉네임입니다.');
   }
   // render
   return (
