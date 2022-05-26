@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
-import request from '../../api/user.js';
+import authApi from '../../api/auth.js';
+import httpStatus from 'http-status';
 import './Header.scss';
 
 interface Props {
@@ -14,9 +15,9 @@ const Header: React.FunctionComponent<Props> = (props) => {
   const { name, menu, menuBtnClick } = props;
   // 로그아웃 버튼 클릭 시
   const logoutBtnClick = async () => {
-    const res = await request.logout();
-    if(res.status === 200) window.location.replace('/');
-    if(res.status >= 500) alert('서버 오류가 발생했습니다.'); // 서버 오류 팝업 구현 필요
+    const res = await authApi.logout();
+    if(res.status === httpStatus.OK) window.location.replace('/');
+    if(res.status >= httpStatus.INTERNAL_SERVER_ERROR) alert('서버 오류가 발생했습니다.'); // 서버 오류 팝업 구현 필요
   }
   // render
   return (
@@ -48,6 +49,9 @@ const Header: React.FunctionComponent<Props> = (props) => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <ul>
+                    <li>
+                      <Link to='/setting' tabIndex={-1}>설정</Link>
+                    </li>
                     <li onClick={logoutBtnClick}> 로그아웃 </li>
                   </ul>
                 </div>

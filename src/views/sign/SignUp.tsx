@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import request from 'src/api/user.js';
+import authApi from 'src/api/auth.js';
+import httpStatus from 'http-status';
 import './SignUp.scss';
 
 interface Props {
@@ -85,20 +86,20 @@ const Register: React.FunctionComponent<Props> = (props) => {
       nickname: nickname,
       info: message
     }
-    const res = await request.register(params);
-    if(res.status === 200) window.location.replace('/');
-    else if(res.status >= 500) setState('서버에 문제가 발생했습니다.');
+    const res = await authApi.register(params);
+    if(res.status === httpStatus.OK) window.location.replace('/');
+    else if(res.status >= httpStatus.INTERNAL_SERVER_ERROR) setState('서버에 문제가 발생했습니다.');
   }
   const chkUserIdClick = async () => {
     if(id === '') return;
-    const res = await request.chkUserId(id);
+    const res = await authApi.chkUserId(id);
     valid.current.id = res.data.valid;
     if(valid.current.id) setIdState('사용 가능한 아이디입니다.');
     else setIdState('사용할 수 없는 아이디입니다.');
   }
   const chkNicknameClick = async () => {
     if(nickname === '') return;
-    const res = await request.chkNickname(nickname);
+    const res = await authApi.chkNickname(nickname);
     valid.current.nickname = res.data.valid;
     if(valid.current.nickname) setNicknameState('사용 가능한 닉네임입니다.');
     else setNicknameState('사용할 수 없는 닉네임입니다.');

@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
+import httpStatus from 'http-status';
 import axios from 'axios';
 import './Home.scss';
 
@@ -7,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     axios.get('/api/monitor')
     .then((res) => {
-      if(res.status === 200){
+      if(res.status === httpStatus.OK){
         const head: string[] = [];
         const body: Array<Array<string>> = [];
         const data = res.data.data;

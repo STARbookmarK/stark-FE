@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import request from 'src/api/user.js';
+import authApi from 'src/api/auth.js';
+import httpStatus from 'http-status';
 import './SignIn.scss';
 
 interface Props {
@@ -42,10 +43,10 @@ const Login: React.FunctionComponent<Props> = (props) => {
       pw: pw,
       autoLogin: autoLogin
     }
-    const res = await request.login(params);
-    if(res.status === 201) window.location.replace('/');
-    else if(res.status === 401) setState('없는 아이디거나 비밀번호가 틀립니다.');
-    else if(res.status >= 500) setState('서버에 문제가 발생했습니다.');
+    const res = await authApi.login(params);
+    if(res.status === httpStatus.CREATED) window.location.replace('/');
+    else if(res.status === httpStatus.UNAUTHORIZED) setState('없는 아이디거나 비밀번호가 틀립니다.');
+    else if(res.status >= httpStatus.INTERNAL_SERVER_ERROR) setState('서버에 문제가 발생했습니다.');
   }
   // input 에서 enter 키 입력 시
   const enterKeyPress = (e: any) => {
