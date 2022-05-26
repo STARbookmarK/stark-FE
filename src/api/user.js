@@ -32,17 +32,17 @@ const register = async (params) => {
   }
 };
 
-const chkUserId = async (params) => {
+const chkUserId = async (userid) => {
   try {
-    return await axios.get(`/api/register/id/${params.userid}`);
+    return await axios.get(`/api/register/id/${userid}`);
   } catch (err) {
     return err.response;
   }
 };
 
-const chkNickname = async (params) => {
+const chkNickname = async (nickname) => {
   try {
-    return await axios.get(`/api/register/name/${params.nickname}`);
+    return await axios.get(`/api/register/name/${nickname}`);
   } catch (err) {
     return err.response;
   }

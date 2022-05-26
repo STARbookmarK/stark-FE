@@ -91,7 +91,7 @@ const Register: React.FunctionComponent<Props> = (props) => {
   }
   const chkUserIdClick = async () => {
     if(id === '') return;
-    const res = await request.chkUserId(id)
+    const res = await request.chkUserId(id);
     valid.current.id = res.data.valid;
     if(valid.current.id) setIdState('사용 가능한 아이디입니다.');
     else setIdState('사용할 수 없는 아이디입니다.');
