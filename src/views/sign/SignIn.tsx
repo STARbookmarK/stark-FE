@@ -32,7 +32,7 @@ const Login: React.FunctionComponent<Props> = (props) => {
   const pwChange = (e: any) => setPw(e.target.value || '')
   const chkboxChange = () => setAutoLogin(!autoLogin);
   // 로그인 버튼 클릭
-  const loginBtnClick = () => {
+  const loginBtnClick = async () => {
     if(id === '' || pw === ''){
       setState('아이디와 비밀번호를 모두 입력하세요.');
       return;
@@ -42,18 +42,10 @@ const Login: React.FunctionComponent<Props> = (props) => {
       pw: pw,
       autoLogin: autoLogin
     }
-    request.login(params)
-    .then((res) => {
-      if(res.status === 200){
-        window.location.replace('/');
-      }
-      else if(res.status === 401){
-        setState('없는 아이디거나 비밀번호가 틀립니다.');
-      }
-      else if(res.status >= 500){
-        setState('서버에 문제가 발생했습니다.');
-      }
-    })
+    const res = await request.login(params);
+    if(res.status === 201) window.location.replace('/');
+    else if(res.status === 401) setState('없는 아이디거나 비밀번호가 틀립니다.');
+    else if(res.status >= 500) setState('서버에 문제가 발생했습니다.');
   }
   // input 에서 enter 키 입력 시
   const enterKeyPress = (e: any) => {

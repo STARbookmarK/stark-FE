@@ -1,7 +1,7 @@
-import './Header.scss';
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
-import axios from 'axios';
+import request from '../../api/user.js';
+import './Header.scss';
 
 interface Props {
   name: string | undefined
@@ -10,18 +10,15 @@ interface Props {
 }
 
 const Header: React.FunctionComponent<Props> = (props) => {
+  // props
   const { name, menu, menuBtnClick } = props;
-
-  const logoutBtnClick = (): void => {
-    axios.get('/api/logout', {
-    })
-    .then(() => {
-      window.location.replace('/');
-    })
-    .catch((err) => {
-    })
+  // 로그아웃 버튼 클릭 시
+  const logoutBtnClick = async () => {
+    const res = await request.logout();
+    if(res.status === 200) window.location.replace('/');
+    if(res.status >= 500) alert('서버 오류가 발생했습니다.'); // 서버 오류 팝업 구현 필요
   }
-
+  // render
   return (
     <div className='navbar_wrap' >
       <div className='navbar'>
