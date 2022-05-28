@@ -50,7 +50,13 @@ const Header: React.FunctionComponent<Props> = (props) => {
                 >
                   <ul>
                     <li>
-                      <Link to='/setting' tabIndex={-1}>설정</Link>
+                      <Link
+                        to='/setting'
+                        tabIndex={-1}
+                        onClick={menuBtnClick}
+                      >
+                        설정
+                      </Link>
                     </li>
                     <li onClick={logoutBtnClick}> 로그아웃 </li>
                   </ul>
