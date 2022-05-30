@@ -1,6 +1,8 @@
+import httpStatus from 'http-status';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userApi from '../../api/user.js';
+import authApi from '../../api/auth.js';
 import './Setting.scss';
 
 interface Props {
@@ -8,6 +10,7 @@ interface Props {
 }
 
 interface UserProps {
+  user_id: string,
   nickname: string,
   info: string,
   bookmarkshow: number,
@@ -20,8 +23,13 @@ const Setting: React.FunctionComponent<Props> = (props) => {
   const { id } = props;
   // 상태 변수
   const [ready, setReady] = useState<boolean>(false);
+  const [pw, setPw] = useState<string>('');
+  const [npw, setNpw] = useState<string>('');
+  const [cpw, setCpw] = useState<string>('');
+  const [info, setInfo] = useState<string>('')
   // 추적되지 않는 변수
   const userData = useRef<UserProps>({
+    user_id: '',
     nickname: '',
     info: '',
     bookmarkshow: 0,
@@ -29,13 +37,45 @@ const Setting: React.FunctionComponent<Props> = (props) => {
     hashtagcategory: 0 
   });
   const navigate = useNavigate();
+  // 입력 값 변동 시
+  const pwChange = (e: any) => setPw(e.target.value || '')
+  const npwChange = (e: any) => setNpw(e.target.value || '')
+  const cpwChange = (e: any) => setCpw(e.target.value || '')
+  const infoChange = (e: any) => setInfo(e.target.value || '')
+  // 비밀번호 변경 함수
+  const changePasswordBtnClick = async () => {
+    // 변경할 지 물어보는 팝업 필요
+    if(npw !== cpw){
+      alert('새로운 비밀번호가 일치하지 않습니다.');
+      return;
+    }
+    const res = await userApi.changePassword({
+      pw: pw,
+      npw: npw
+    });
+    if(res.status === httpStatus.NO_CONTENT){
+      alert('비밀번호 변경이 완료되었습니다. 바뀐 비밀번호로 재로그인 하세요.');
+      await authApi.logout();
+      window.location.replace('/login');
+    }
+    else if(res.status === httpStatus.BAD_REQUEST){
+      alert('비밀번호가 일치하지 않습니다.');
+      setPw('');
+    }
+    else if(res.status >= httpStatus.INTERNAL_SERVER_ERROR) alert('서버에 오류가 발생했습니다.');
+  }
+  // 상태 메세지 변경 함수
+  const changeInfoBtnClick = async () => {
+    await userApi.changeInfo(info);
+    alert('상태 메세지가 변경되었습니다.');
+  }
   // 페이지가 렌더링되면 로그인된 유저 정보 불러오기
   const init = async () => {
+    if(!id) navigate('/login');
     const res = await userApi.getUserInfo();
     userData.current = res.data;
-    if(!id) navigate('/login');
+    setInfo(userData.current.info);
     setReady(true);
-    console.log(id);
   }
   useEffect(() => {
     init();
@@ -66,7 +106,8 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                       type="text"
                       className='setting_input'
                       style={{ width: '100%' }}
-                      value={userData.current.info}
+                      value={info}
+                      onChange={infoChange}
                     />
                   </td>
                 </tr>
@@ -78,7 +119,10 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                 justifyContent: 'right'
               }}
             >
-              <div className='setting_btn'>
+              <div
+                className='setting_btn'
+                onClick={changeInfoBtnClick}
+              >
                 <p>수정</p>
               </div>
             </div>
@@ -95,6 +139,8 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                   <th>비밀번호</th>
                   <td>
                     <input
+                      value={pw}
+                      onChange={pwChange}
                       type="password"
                       className='setting_input'
                     />
@@ -104,6 +150,8 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                   <th>새 비밀번호</th>
                   <td>
                     <input
+                      value={npw}
+                      onChange={npwChange}
                       type="password"
                       className='setting_input'
                     />
@@ -113,6 +161,8 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                   <th>새 비밀번호 확인</th>
                   <td>
                     <input
+                      value={cpw}
+                      onChange={cpwChange}
                       type="password"
                       className='setting_input'
                     />
@@ -126,7 +176,10 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                 justifyContent: 'right'
               }}
             >
-              <div className='setting_btn'>
+              <div
+                className='setting_btn'
+                onClick={changePasswordBtnClick}
+              >
                 <p>수정</p>
               </div>
             </div>
