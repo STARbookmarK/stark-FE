@@ -87,7 +87,7 @@ const Register: React.FunctionComponent<Props> = (props) => {
       info: message
     }
     const res = await authApi.register(params);
-    if(res.status === httpStatus.OK) window.location.replace('/');
+    if(res.status === httpStatus.CREATED) window.location.replace('/');
     else if(res.status >= httpStatus.INTERNAL_SERVER_ERROR) setState('서버에 문제가 발생했습니다.');
   }
   const chkUserIdClick = async () => {

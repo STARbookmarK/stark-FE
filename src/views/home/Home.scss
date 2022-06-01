@@ -3,6 +3,7 @@
 .home_wrap {
   @include flex_middle;
   margin-top: 60px;
+  overflow-x: auto;
   table {
     width: 100%;
     border: 2px solid $br;

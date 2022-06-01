@@ -28,8 +28,22 @@ const changeInfo = async (info) => {
   }
 }
 
+const changeShow = async (params) => {
+  try {
+    const { bookmarkShow, hashtagShow, hashtagCategory } = params;
+    return await axios.patch('/api/show', {
+      bookmarkShow: bookmarkShow,
+      hashtagShow: hashtagShow,
+      hashtagCategory: hashtagCategory
+    });
+  } catch (err) {
+    return err.response;
+  }
+}
+
 export default {
   getUserInfo,
   changePassword,
-  changeInfo
+  changeInfo,
+  changeShow
 }

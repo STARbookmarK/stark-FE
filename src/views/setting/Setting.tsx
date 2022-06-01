@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { useEffect, useRef, useState } from 'react';
+import { useDebugValue, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userApi from '../../api/user.js';
 import authApi from '../../api/auth.js';
@@ -15,7 +15,7 @@ interface UserProps {
   info: string,
   bookmarkshow: number,
   hashtagshow: number,
-  hashtagcategory: number
+  hashtagcategory: number 
 }
 
 const Setting: React.FunctionComponent<Props> = (props) => {
@@ -27,6 +27,9 @@ const Setting: React.FunctionComponent<Props> = (props) => {
   const [npw, setNpw] = useState<string>('');
   const [cpw, setCpw] = useState<string>('');
   const [info, setInfo] = useState<string>('')
+  const [bookmarkShow, setBookmarkShow] = useState<number>(0);
+  const [hashtagShow, setHashtagShow] = useState<number>(0);
+  const [hashtagCategory, setHashtagCategory] = useState<number>(0);
   // 추적되지 않는 변수
   const userData = useRef<UserProps>({
     user_id: '',
@@ -42,6 +45,9 @@ const Setting: React.FunctionComponent<Props> = (props) => {
   const npwChange = (e: any) => setNpw(e.target.value || '')
   const cpwChange = (e: any) => setCpw(e.target.value || '')
   const infoChange = (e: any) => setInfo(e.target.value || '')
+  const bookmarkShowChange = (e: any) => setBookmarkShow(parseInt(e.target.value) || 0)
+  const hashtagShowChange = (e: any) => setHashtagShow(parseInt(e.target.value) || 0)
+  const hashtagCategoryChange = (e: any) => setHashtagCategory(parseInt(e.target.value) || 0)
   // 비밀번호 변경 함수
   const changePasswordBtnClick = async () => {
     // 변경할 지 물어보는 팝업 필요
@@ -69,11 +75,23 @@ const Setting: React.FunctionComponent<Props> = (props) => {
     await userApi.changeInfo(info);
     alert('상태 메세지가 변경되었습니다.');
   }
+  // 보기 방식 변경 함수
+  const changeShowBtnClick = async () => {
+    await userApi.changeShow({
+      bookmarkShow: bookmarkShow,
+      hashtagShow: hashtagShow,
+      hashtagCategory: hashtagCategory
+    });
+    alert('보기 방식이 변경되었습니다.');
+  }
   // 페이지가 렌더링되면 로그인된 유저 정보 불러오기
   const init = async () => {
     if(!id) navigate('/login');
     const res = await userApi.getUserInfo();
     userData.current = res.data;
+    setBookmarkShow(userData.current.bookmarkshow);
+    setHashtagShow(userData.current.hashtagshow);
+    setHashtagCategory(userData.current.hashtagcategory);
     setInfo(userData.current.info);
     setReady(true);
   }
@@ -194,20 +212,74 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                     <label>
                       <input
                         type='radio'
-                        name='show'
+                        name='bookmarkShow'
+                        value='0'
+                        checked={bookmarkShow === 0}
+                        onChange={bookmarkShowChange}
                       />
-                      바둑형
+                      격자형
                     </label>
-                    <label><input type='radio' name="show"/>리스트형</label>
+                    <label>
+                      <input
+                        type='radio'
+                        name='bookmarkShow'
+                        value='1'
+                        checked={bookmarkShow === 1}
+                        onChange={bookmarkShowChange}
+                      />
+                      리스트형
+                    </label>
                   </td>
                 </tr>
                 <tr>
                   <th>즐겨찾기 해시태그</th>
-                  <td></td>
+                  <td>
+                    <label>
+                      <input
+                        type='radio'
+                        name='hashtagShow'
+                        value='0'
+                        checked={hashtagShow === 0}
+                        onChange={hashtagShowChange}
+                      />
+                      보이기
+                    </label>
+                    <label>
+                      <input
+                        type='radio'
+                        name='hashtagShow'
+                        value='1'
+                        checked={hashtagShow === 1}
+                        onChange={hashtagShowChange}
+                      />
+                      숨기기
+                    </label>
+                  </td>
                 </tr>
                 <tr>
                   <th>즐겨찾기 해시태그 카테고리화</th>
-                  <td></td>
+                  <td>
+                    <label>
+                      <input
+                        type='radio'
+                        name='hashtagCategory'
+                        value='0'
+                        checked={hashtagCategory === 0}
+                        onChange={hashtagCategoryChange}
+                      />
+                      활성화
+                    </label>
+                    <label>
+                      <input
+                        type='radio'
+                        name='hashtagCategory'
+                        value='1'
+                        checked={hashtagCategory === 1}
+                        onChange={hashtagCategoryChange}
+                      />
+                      비활성화
+                    </label>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -217,7 +289,10 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                 justifyContent: 'right'
               }}
             >
-              <div className='setting_btn'>
+              <div
+                className='setting_btn'
+                onClick={changeShowBtnClick}
+              >
                 <p>수정</p>
               </div>
             </div>
