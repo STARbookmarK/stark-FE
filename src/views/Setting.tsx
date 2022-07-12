@@ -1,9 +1,9 @@
 import httpStatus from 'http-status';
-import { useDebugValue, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import userApi from '../../api/user.js';
-import authApi from '../../api/auth.js';
-import './Setting.scss';
+import userApi from '../api/user.js';
+import authApi from '../api/auth.js';
+import styles from '@styles/views/Setting.module.scss';
 
 interface Props {
   id: string | undefined
@@ -100,12 +100,12 @@ const Setting: React.FunctionComponent<Props> = (props) => {
   }, []);
   // render
   return (
-    <div className='setting_wrap'>
+    <div className={styles.setting_wrap}>
     { ready && 
-      <div className='setting'>
+      <div className={styles.setting}>
         <h2>설정</h2>
-        <div className='setting_form'>
-          <div className='setting_item'>
+        <div className={styles.setting_form}>
+          <div className={styles.setting_item}>
             <h3>기본 정보</h3>
             <table>
               <tbody>
@@ -122,7 +122,7 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                   <td>
                     <input
                       type="text"
-                      className='setting_input'
+                      className={styles.setting_input}
                       style={{ width: '100%' }}
                       value={info}
                       onChange={infoChange}
@@ -138,14 +138,14 @@ const Setting: React.FunctionComponent<Props> = (props) => {
               }}
             >
               <div
-                className='setting_btn'
+                className={styles.setting_btn}
                 onClick={changeInfoBtnClick}
               >
                 <p>수정</p>
               </div>
             </div>
           </div>
-          <div className='setting_item'>
+          <div className={styles.setting_item}>
             <h3>비밀번호 변경</h3>
             <table>
               <tbody>
@@ -160,7 +160,7 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                       value={pw}
                       onChange={pwChange}
                       type="password"
-                      className='setting_input'
+                      className={styles.setting_input}
                     />
                   </td>
                 </tr>
@@ -171,7 +171,7 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                       value={npw}
                       onChange={npwChange}
                       type="password"
-                      className='setting_input'
+                      className={styles.setting_input}
                     />
                   </td>
                 </tr>
@@ -182,7 +182,7 @@ const Setting: React.FunctionComponent<Props> = (props) => {
                       value={cpw}
                       onChange={cpwChange}
                       type="password"
-                      className='setting_input'
+                      className={styles.setting_input}
                     />
                   </td>
                 </tr>
@@ -195,14 +195,14 @@ const Setting: React.FunctionComponent<Props> = (props) => {
               }}
             >
               <div
-                className='setting_btn'
+                className={styles.setting_btn}
                 onClick={changePasswordBtnClick}
               >
                 <p>수정</p>
               </div>
             </div>
           </div>
-          <div className='setting_item'>
+          <div className={styles.setting_item}>
             <h3>보기</h3>
             <table>
               <tbody>
@@ -290,7 +290,7 @@ const Setting: React.FunctionComponent<Props> = (props) => {
               }}
             >
               <div
-                className='setting_btn'
+                className={styles.setting_btn}
                 onClick={changeShowBtnClick}
               >
                 <p>수정</p>

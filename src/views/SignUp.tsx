@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import authApi from 'src/api/auth.js';
 import httpStatus from 'http-status';
-import './SignUp.scss';
+import authApi from '@api/auth.js';
+import styles from '@styles/views/SignUp.module.scss';
 
 interface Props {
   name: string | undefined
@@ -106,26 +106,26 @@ const Register: React.FunctionComponent<Props> = (props) => {
   }
   // render
   return (
-    <div className='sign_form_wrap'>
-      <div className='sign_form'>
+    <div className={styles.sign_form_wrap}>
+      <div className={styles.sign_form}>
         <h3>회원가입</h3>
-        <p className='register_title'>아이디</p>
-        <div className='register_item'>
+        <p className={styles.register_title}>아이디</p>
+        <div className={styles.register_item}>
           <input
             value={id}
             onChange={idChange}
             type='text'
-            className='sign_input'
+            className={styles.sign_input}
           />
           <div
-            className='sign_btn chk_btn'
+            className={`${styles.sign_btn} ${styles.chk_btn}`}
             onClick={chkUserIdClick}
           >
             확인
           </div>
         </div>
         <p
-          className='sign_state'
+          className={styles.sign_state}
           style={{
             width: '100%',
             textAlign: 'right',
@@ -134,47 +134,47 @@ const Register: React.FunctionComponent<Props> = (props) => {
         >
           {idState}
         </p>
-        <div className='register_password'>
-          <div className='register_password_item'>
-            <p className='register_title'>비밀번호</p>
-            <div className='register_item'>
+        <div className={styles.register_password}>
+          <div className={styles.register_password_item}>
+            <p className={styles.register_title}>비밀번호</p>
+            <div className={styles.register_item}>
               <input
                 value={pw}
                 onChange={pwChange}
                 type='password'
-                className='sign_input'
+                className={styles.sign_input}
               />
             </div>
           </div>
-          <div className='register_password_item'>
-            <p className='register_title'>비밀번호 확인</p>
-            <div className='register_item'>
+          <div className={styles.register_password_item}>
+            <p className={styles.register_title}>비밀번호 확인</p>
+            <div className={styles.register_item}>
               <input
                 value={cpw}
                 onChange={cpwChange}
                 type='password'
-                className='sign_input'
+                className={styles.sign_input}
               />
             </div>
           </div>
         </div>
-        <p className='register_title'>닉네임</p>
-        <div className='register_item'>
+        <p className={styles.register_title}>닉네임</p>
+        <div className={styles.register_item}>
           <input
             value={nickname}
             onChange={nicknameChange}
             type='text'
-            className='sign_input'
+            className={styles.sign_input}
           />
           <div
-            className='sign_btn chk_btn'
+            className={`${styles.sign_btn} ${styles.chk_btn}`}
             onClick={chkNicknameClick}
           >
             확인
           </div>
         </div>
         <p
-          className='sign_state'
+          className={styles.sign_state}
           style={{
             width: '100%',
             textAlign: 'right',
@@ -183,25 +183,25 @@ const Register: React.FunctionComponent<Props> = (props) => {
         >
           {nicknameState}
         </p>
-        <p className='register_title'>상태 메시지</p>
-        <div className='register_item'>
+        <p className={styles.register_title}>상태 메시지</p>
+        <div className={styles.register_item}>
           <input
             value={message}
             onChange={messageChange}
             type='text'
-            className='sign_input'
+            className={styles.sign_input}
           />
         </div>
-        <div className='register_item'>
+        <div className={styles.register_item}>
           <div
             style={{ marginTop: '10px' }}
-            className='sign_btn'
+            className={styles.sign_btn}
             onClick={registerBtnClick}
           >
             <p>가입 완료</p>
           </div>
         </div>
-        <p className='sign_state'>{state}</p>
+        <p className={styles.sign_state}>{state}</p>
       </div>
     </div>
   );

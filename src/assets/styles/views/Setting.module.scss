@@ -1,4 +1,4 @@
-@import 'src/styles/common.scss';
+@import "../libs";
 
 .setting_wrap {
   @include flex_middle;
@@ -57,6 +57,11 @@
             }
             th {
               text-align: left;
+            }
+            td {
+              label {
+                white-space: nowrap;
+              }
             }
           }
         }

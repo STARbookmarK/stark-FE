@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import httpStatus from 'http-status';
 import axios from 'axios';
-import './Home.scss';
+import styles from '@styles/views/Home.module.scss';
 
 const Home = () => {
   const [view, setView] = useState<ReactNode>(<></>);
@@ -67,7 +67,7 @@ const Home = () => {
     })
   }, [])
   return (
-    <div className='home_wrap'>
+    <div className={styles.home_wrap}>
       {view}
     </div>
   );

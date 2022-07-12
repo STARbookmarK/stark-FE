@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
-import authApi from '../../api/auth.js';
+import authApi from '../api/auth.js';
 import httpStatus from 'http-status';
-import './Header.scss';
+import styles from '@styles/views/Header.module.scss';
 
 interface Props {
   name: string | undefined
@@ -21,23 +21,23 @@ const Header: React.FunctionComponent<Props> = (props) => {
   }
   // render
   return (
-    <div className='navbar_wrap' >
-      <div className='navbar'>
+    <div className={styles.navbar_wrap}>
+      <div className={styles.navbar}>
         <Link
           to='/'
           tabIndex={-1}
-          className='logo'
+          className={styles.logo}
         >
           STARK
         </Link>
         { name
-          ? <div className='login'>
+          ? <div className={styles.login}>
               <Link to='/' tabIndex={-1}>홈</Link>
-              <div className='divider'/>
+              <div className={styles.divider}/>
               <Link to='/mylist' tabIndex={-1}>북마크</Link>
               <div style={{flex: '1 0 0'}}/>
               <div
-                className='login_user'
+                className={styles.login_user}
                 onClick={menuBtnClick}
               >
                 <p>{name}</p>
@@ -45,7 +45,7 @@ const Header: React.FunctionComponent<Props> = (props) => {
               </div>
               { menu && 
                 <div
-                  className='menu'
+                  className={styles.menu}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <ul>
@@ -63,13 +63,13 @@ const Header: React.FunctionComponent<Props> = (props) => {
                 </div>
               }
             </div>
-          : <div className='logout'>
+          : <div className={styles.logout}>
               <div style={{flex: '1 0 0'}}/>
               <ul>
                 <li>
                   <Link to='/login' tabIndex={-1}>로그인</Link>
                 </li>
-                <li className='divider'></li>
+                <li className={styles.divider}></li>
                 <li>
                   <Link to='/register' tabIndex={-1}>회원가입</Link>
                 </li>

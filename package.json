@@ -12,6 +12,8 @@
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
     "axios": "^0.26.1",
+    "craco": "^0.0.3",
+    "craco-alias": "^3.0.1",
     "http-proxy-middleware": "^2.0.6",
     "http-status": "^1.5.2",
     "node-sass": "^7.0.1",
@@ -24,10 +26,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [

@@ -1,9 +1,9 @@
-import Header from 'src/views/header/Header';
-import MyList from 'src/views/mylist/MyList';
-import Login from 'src/views/sign/SignIn';
-import Register from 'src/views/sign/SignUp';
-import Setting from 'src/views/setting/Setting';
-import Home from 'src/views/home/Home';
+import Header from '@views/Header';
+import MyList from '@views/MyList';
+import Login from '@views/SignIn';
+import Register from '@views/SignUp';
+import Setting from '@views/Setting';
+import Home from '@views/Home';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import authApi from './api/auth.js';

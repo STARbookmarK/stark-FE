@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import authApi from 'src/api/auth.js';
 import httpStatus from 'http-status';
-import './SignIn.scss';
+import authApi from '@api/auth.js';
+import styles from '@styles/views/SignIn.module.scss';
 
 interface Props {
   name: string | undefined
@@ -54,39 +54,39 @@ const Login: React.FunctionComponent<Props> = (props) => {
   }
   // render
   return (
-    <div className='sign_form_wrap'>
-      <div className='sign_form'>
+    <div className={styles.sign_form_wrap}>
+      <div className={styles.sign_form}>
         <h3>로그인</h3>
-        <div className='login_item'>
+        <div className={styles.login_item}>
           <input
             value={id}
             onChange={idChange}
             type='text'
             placeholder='아이디'
             onKeyPress={enterKeyPress}
-            className='sign_input'
+            className={styles.sign_input}
           />
         </div>
-        <div className='login_item'>
+        <div className={styles.login_item}>
           <input
             value={pw}
             onChange={pwChange}
             type='password'
             placeholder='비밀번호'
             onKeyPress={enterKeyPress}
-            className='sign_input'
+            className={styles.sign_input}
           />
         </div>
-        <div className='login_item'>
+        <div className={styles.login_item}>
           <div
-            className='sign_btn'
+            className={styles.sign_btn}
             onClick={loginBtnClick}
           >
             <p>로그인</p>
           </div>
         </div>
-        <p className='sign_state'>{state}</p>
-        <label className='login_auto'>
+        <p className={styles.sign_state}>{state}</p>
+        <label className={styles.login_auto}>
           <input
             type='checkbox'
             checked={autoLogin}
