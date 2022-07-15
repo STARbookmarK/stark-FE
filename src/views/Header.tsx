@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
 import authApi from '../api/auth.js';
 import httpStatus from 'http-status';
+import Dropdown from '@img/dropdown.png';
 import styles from '@styles/views/Header.module.scss';
 
 interface Props {
@@ -41,7 +42,7 @@ const Header: React.FunctionComponent<Props> = (props) => {
                 onClick={menuBtnClick}
               >
                 <p>{name}</p>
-                <img src='img/dropdown.png'/>
+                <img src={Dropdown}/>
               </div>
               { menu && 
                 <div
